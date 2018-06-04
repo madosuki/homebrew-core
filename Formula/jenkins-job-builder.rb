@@ -1,14 +1,14 @@
 class JenkinsJobBuilder < Formula
   desc "Configure Jenkins jobs with YAML files stored in Git"
   homepage "https://docs.openstack.org/infra/system-config/jjb.html"
-  url "https://files.pythonhosted.org/packages/ec/94/0215c6611e52d3bea8539b468631195738bcae0cf8f1dc761a3014755a5a/jenkins-job-builder-2.0.6.tar.gz"
-  sha256 "9c2d5cf560a27ec48dd3575194ce38b1397467338b8219f8f4dd363cf196d58a"
+  url "https://files.pythonhosted.org/packages/80/b6/a0d1e2317effae420c0ba01bac72eadb3ddf4b75f0d7236b546e8c74458f/jenkins-job-builder-2.0.9.tar.gz"
+  sha256 "84a852f0731c70dbd57eacf04bf3c88ac30dbdda0cf0d1d266556d06e33f9456"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "d2a1dc7dd40a37534cdb1e1e22087c832f7cf7d97c6d4f966fa98a9199e59324" => :high_sierra
-    sha256 "223e406609c2bda7716d851782a668f78311a13cd05c1953a84a68b051b6e9c0" => :sierra
-    sha256 "0c4fb852e731c19d3d29cf21684c6df8839ecd72fb43ee8a56c9f2b1fbee3d32" => :el_capitan
+    sha256 "9785157a1517e4019d02f4fef9c38783ce8c340b1b5548b58d9a92fe374378fd" => :high_sierra
+    sha256 "322134d6048b88175c221d3fcd79978b21f6ff1e62934ed77d79c0d61012de09" => :sierra
+    sha256 "3b11fc09660c14ef863109d7bb294714c85c9f43638b1053a579164993aa3a85" => :el_capitan
   end
 
   depends_on "python@2"
@@ -44,8 +44,8 @@ class JenkinsJobBuilder < Formula
   end
 
   resource "monotonic" do
-    url "https://files.pythonhosted.org/packages/14/73/04da85fc1bacfa94361f00205a464b7f1ed23bfe8de3511cbff0fa2eeda7/monotonic-1.4.tar.gz"
-    sha256 "a02611d5b518cd4051bf22d21bd0ae55b3a03f2d2993a19b6c90d9d168691f84"
+    url "https://files.pythonhosted.org/packages/19/c1/27f722aaaaf98786a1b338b78cf60960d9fe4849825b071f4e300da29589/monotonic-1.5.tar.gz"
+    sha256 "23953d55076df038541e648a53676fb24980f7a1be290cdda21300b3bc21dfb0"
   end
 
   resource "multi_key_dict" do
@@ -54,13 +54,13 @@ class JenkinsJobBuilder < Formula
   end
 
   resource "pbr" do
-    url "https://files.pythonhosted.org/packages/c6/46/f414e7d9ba9621c8acd3e7a82e08c47e0de34ad3e213c16e458b6c04d432/pbr-4.0.2.tar.gz"
-    sha256 "dae4aaa78eafcad10ce2581fc34d694faa616727837fd8e55c1a00951ad6744f"
+    url "https://files.pythonhosted.org/packages/a7/d7/eeb3cc66469e21843748e9b8f196eefd42fc81ea43191715e8ec54fee4df/pbr-4.0.3.tar.gz"
+    sha256 "6874feb22334a1e9a515193cba797664e940b763440c88115009ec323a7f2df5"
   end
 
   resource "python-jenkins" do
-    url "https://files.pythonhosted.org/packages/5a/ce/4e5d105a22cb0c5f069c12b83e2c76d9b13182aa18183b0df9ddd18dd528/python-jenkins-1.0.0.tar.gz"
-    sha256 "62cb35eaee1c149550b0a0fdbfb3b1c9dcd3de048dd18d6de20add6d78356ef4"
+    url "https://files.pythonhosted.org/packages/f5/8d/15e2d4fa977cf9cac1d43575be096744ebd5295060b6c9e13889879a73b5/python-jenkins-1.0.1.tar.gz"
+    sha256 "a4f85a5b0e532de037c31f20a236ab5dfbee5ef37ccad3b72628dfa058d5b838"
   end
 
   resource "PyYAML" do

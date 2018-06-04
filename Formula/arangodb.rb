@@ -1,14 +1,26 @@
 class Arangodb < Formula
   desc "The Multi-Model NoSQL Database"
   homepage "https://www.arangodb.com/"
-  url "https://download.arangodb.com/Source/ArangoDB-3.3.7.tar.gz"
-  sha256 "3b92d1f20a894b3c8e8cc2e5f4172eadf2b592da0b4eb5d1a657b064cf824570"
   head "https://github.com/arangodb/arangodb.git", :branch => "unstable"
 
+  stable do
+    url "https://download.arangodb.com/Source/ArangoDB-3.3.9.tar.gz"
+    sha256 "5b27a88c6e2c05e4ac96fb4cac6754a603a1ca2aef96359f374dd529d427569f"
+
+    # Remove for > 3.3.9
+    # Upstream commit from 22 May 2018 "Compile fix for homebrew (#5417)"
+    if DevelopmentTools.clang_build_version <= 800
+      patch do
+        url "https://github.com/arangodb/arangodb/commit/6ca523f2700.patch?full_index=1"
+        sha256 "bf3d4335578e31d356c85901b470398ddb231d71b9dbe7f8a28d818d9610ad66"
+      end
+    end
+  end
+
   bottle do
-    sha256 "099001c6a9d68c2b677e9537e8f9cb809476a0e1078f49f5c2182ff662b8f01e" => :high_sierra
-    sha256 "e1989922de947ac911df9d0f0c97aeb4899a68b2fc5b76a1d26a04f7eed06734" => :sierra
-    sha256 "ee649e2a523c37ee54f9bd4ab17d8cb965c0b4eeae797b4855e769fec2bc1f50" => :el_capitan
+    sha256 "447c6a009824ff5cc7efe0cb12729a757b3cee1353c9714d114e71ad58e322e4" => :high_sierra
+    sha256 "d416e73e3471ee7e3c0db1a19e96827b062455ffaf3b02541ef0efc48ade4189" => :sierra
+    sha256 "491fe4da102b7bb10167e124114f8e2f053cc97900e3bfeb62817824d10502c8" => :el_capitan
   end
 
   depends_on :macos => :yosemite

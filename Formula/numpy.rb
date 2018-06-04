@@ -1,13 +1,14 @@
 class Numpy < Formula
   desc "Package for scientific computing with Python"
   homepage "https://www.numpy.org/"
-  url "https://files.pythonhosted.org/packages/0b/66/86185402ee2d55865c675c06a5cfef742e39f4635a4ce1b1aefd20711c13/numpy-1.14.2.zip"
-  sha256 "facc6f925c3099ac01a1f03758100772560a0b020fb9d70f210404be08006bcb"
+  url "https://files.pythonhosted.org/packages/b0/2b/497c2bb7c660b2606d4a96e2035e92554429e139c6c71cdff67af66b58d2/numpy-1.14.3.zip"
+  sha256 "9016692c7d390f9d378fc88b7a799dc9caa7eb938163dda5276d3f3d6f75debf"
+  revision 1
 
   bottle do
-    sha256 "953c10a547b9af36436e7d31297fe2a15be912e3ae6bd70634957f9935bf6a8e" => :high_sierra
-    sha256 "aa3a48369f9869f17cf44fb2f87a49bb76e0adf04fb5cee52a5d5d18e938b999" => :sierra
-    sha256 "c22afeed38791bce599ff2b1c4263a90ed2ec08177396171e879ab4c70f3c3fb" => :el_capitan
+    sha256 "4ec78166efce2904beb06ecc251b8a851207829c37e04a244ed6b004edeec7f1" => :high_sierra
+    sha256 "176cbf7a2393199c1cbb77e36811cb244793e40125454904d3070c21cece8483" => :sierra
+    sha256 "34f1cc206f1d59892a8f277cd8a0e39d991cb53c12e1628c6465b9c9c893a937" => :el_capitan
   end
 
   head do
