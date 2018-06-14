@@ -1,14 +1,14 @@
 class Goreleaser < Formula
   desc "Deliver Go binaries as fast and easily as possible"
   homepage "https://goreleaser.com/"
-  url "https://github.com/goreleaser/goreleaser/archive/v0.77.0.tar.gz"
-  sha256 "fc4f531f16231bff2caa3e9a8f8c1a69630ba29c587b5ca4f7c06ae7ad84c8b4"
+  url "https://github.com/goreleaser/goreleaser/archive/v0.77.2.tar.gz"
+  sha256 "7079816c2527cf7d1585c4e80ad88b54486395e913128bf9eb628ea2199f1d6b"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "491229279c42fcc42fdc31d8c87694d30356bade307a4323b022ced5b294e561" => :high_sierra
-    sha256 "1c76403d3f2352f550fa001ea9e772a428a52b4b9a924b74dcbd4e663ee4f3a1" => :sierra
-    sha256 "62152fe1332831a991d0c21bb717a04fba804d73b877ae470ee5d0ad4eb941ae" => :el_capitan
+    sha256 "31a39769408464b31c3237093ad6694a4e003691aa547de79d87e0d73f242994" => :high_sierra
+    sha256 "806b62effaec19eba19063d2407a25ad1ccbaa4b90b514dfeb8fbdbd0b58be4d" => :sierra
+    sha256 "1f65fba8be7c0138a4cbaaa7c6b9185b44eede51dddea4d8d2ddeb75a63c6ffa" => :el_capitan
   end
 
   depends_on "dep" => :build
@@ -18,7 +18,7 @@ class Goreleaser < Formula
     ENV["GOPATH"] = buildpath
     (buildpath/"src/github.com/goreleaser/goreleaser").install buildpath.children
     cd "src/github.com/goreleaser/goreleaser" do
-      system "dep", "ensure"
+      system "dep", "ensure", "-vendor-only"
       system "go", "build", "-ldflags", "-X main.version=#{version}", "-o",
              bin/"goreleaser"
       prefix.install_metafiles

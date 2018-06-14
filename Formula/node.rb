@@ -1,14 +1,14 @@
 class Node < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v10.3.0/node-v10.3.0.tar.xz"
-  sha256 "cb90e9bde8e655eeb152ebdbe1b72e7d2443e3ae2d5f9ac4acd69e7c22671f31"
+  url "https://nodejs.org/dist/v10.4.1/node-v10.4.1.tar.xz"
+  sha256 "a5bf584b52f992b6ce31d8afd8c468945a772431575ad868e4e787f390ad8044"
   head "https://github.com/nodejs/node.git"
 
   bottle do
-    sha256 "9958f3f4253cefc51b75982feabf7035c9774f0d293209ca83096134033e2ec8" => :high_sierra
-    sha256 "49965a08da0c694b4107d295886f37a8dd63f0fbf94051272af07e885c9f8a31" => :sierra
-    sha256 "fd83a1d3b9a9e20ebfe4b64f279f04b34b993e3660b6234c3a5ed7fdfb802343" => :el_capitan
+    sha256 "b0d4ff9aa5eabc88d0f24cb33ab0c1d8f810f6a97e11287cc9b1b7a8dc0302d3" => :high_sierra
+    sha256 "d2a65f3810fec8ce7f4b8bf214732564d352a94d5df4d876a9607814760ae8f3" => :sierra
+    sha256 "7aa7ec5a27ff9342f3143c4bf9e4e18fc719e11061029d1ce6095ee947c2e273" => :el_capitan
   end
 
   option "with-debug", "Build with debugger hooks"
@@ -38,6 +38,12 @@ class Node < Formula
   resource "npm" do
     url "https://registry.npmjs.org/npm/-/npm-6.1.0.tgz"
     sha256 "be8bb5fdb52e5af8a62988ad32f51c688d1327f62412c4410b30c29c8d66a85f"
+  end
+
+  # Patch configure to support detecting double-digit Xcode versions
+  patch do
+    url "https://github.com/nodejs/node/commit/400df22c6bfefc3c3f54ebd7c5fd0d38f5137841.patch?full_index=1"
+    sha256 "a1ac0e2589c8b9e98bf4712723a6ef28bc23dcd1aa1891d045b5a5e3a329cb36"
   end
 
   def install

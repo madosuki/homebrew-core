@@ -113,7 +113,7 @@ class Emacs < Formula
     if build.with? "cocoa" then <<~EOS
       Please try the Cask for a better-supported Cocoa version:
         brew cask install emacs
-      EOS
+    EOS
     end
   end
 
@@ -129,13 +129,13 @@ class Emacs < Formula
       <key>ProgramArguments</key>
       <array>
         <string>#{opt_bin}/emacs</string>
-        <string>--daemon</string>
+        <string>--fg-daemon</string>
       </array>
       <key>RunAtLoad</key>
       <true/>
     </dict>
     </plist>
-    EOS
+  EOS
   end
 
   test do
