@@ -3,12 +3,13 @@ class Libphonenumber < Formula
   homepage "https://github.com/googlei18n/libphonenumber"
   url "https://github.com/googlei18n/libphonenumber/archive/v8.9.8.tar.gz"
   sha256 "cca3a279ddf5e363febb5a34d3e946edfad7f4edb6aa03a83b193d3d523221cf"
+  revision 2
 
   bottle do
     cellar :any
-    sha256 "3b1c44db5364e9a386d917d95fabe1cbe4e3276313ca9f2875a35629a3ae7156" => :high_sierra
-    sha256 "9c3302eb35eba9f39349e41adea8b61c25c9908ea3cbf1566bf30817ea77fd14" => :sierra
-    sha256 "4e21165c670bad932b07b4ca8713348ad0479be8e044a95791ddae455219f4e9" => :el_capitan
+    sha256 "c9af1ecfd5f9fff688401d1cd8008ec7f2934beaf2a8f8e0e3ca0a96625a82b3" => :high_sierra
+    sha256 "67edfcd1e73f886d1e5703de5aed46ac950ed33abb0d8eb70b578d6ede56a73e" => :sierra
+    sha256 "e6e7fc9779a120cd55b6ea4718f75acb7ce08e592d399a69246eae779adbaa0a" => :el_capitan
   end
 
   depends_on "cmake" => :build
@@ -57,7 +58,7 @@ class Libphonenumber < Formula
         }
       }
     EOS
-    system ENV.cxx, "test.cpp", "-L#{lib}", "-lphonenumber", "-o", "test"
+    system ENV.cxx, "-std=c++11", "test.cpp", "-L#{lib}", "-lphonenumber", "-o", "test"
     system "./test"
   end
 end
