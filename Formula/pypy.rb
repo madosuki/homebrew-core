@@ -7,9 +7,10 @@ class Pypy < Formula
 
   bottle do
     cellar :any
-    sha256 "d654483d9b35d9d910d9d800381c24f241d6ea01abc32404480d676ac9fa15f1" => :high_sierra
-    sha256 "855930f3eb9f9a544f15ea56f03c95b78bdab0e210458cac8fa15a080e7b2e40" => :sierra
-    sha256 "afde0515da46850a2f991741985d2cd1498ec0f8e285985861b80620812ae746" => :el_capitan
+    rebuild 1
+    sha256 "6dcfb7237a5e140e1553ed17765e831d9011ab9b94cab7ef17afe03b5ff73843" => :high_sierra
+    sha256 "0ed2c2f9624ca5bbd48bc730378304ddfc22838edeb566c461ce574deba311df" => :sierra
+    sha256 "639304dfa0d74fef27ad2566ececf3514288a87e471fb5f147ae4726c0a1f798" => :el_capitan
   end
 
   option "without-bootstrap", "Translate Pypy with system Python instead of " \
@@ -24,8 +25,9 @@ class Pypy < Formula
   depends_on "openssl"
 
   resource "bootstrap" do
-    url "https://bitbucket.org/pypy/pypy/downloads/pypy-2.5.0-osx64.tar.bz2"
-    sha256 "30b392b969b54cde281b07f5c10865a7f2e11a229c46b8af384ca1d3fe8d4e6e"
+    url "https://bitbucket.org/pypy/pypy/downloads/pypy2-v6.0.0-osx64.tar.bz2"
+    version "6.0.0"
+    sha256 "d7dc443e6bb9a45212e8d8f5a63e9f6ce23f1d88c50709efea1c75b76c8bc186"
   end
 
   resource "setuptools" do
@@ -65,7 +67,7 @@ class Pypy < Formula
       package_args = %w[--archive-name pypy --targetdir .]
       package_args << "--without-gdbm" if build.without? "gdbm"
       system python, "package.py", *package_args
-      system "tar", "-C", libexec.to_s, "--strip-components", "1", "-xzf", "pypy.tar.bz2"
+      system "tar", "-C", libexec.to_s, "--strip-components", "1", "-xf", "pypy.tar.bz2"
     end
 
     (libexec/"lib").install libexec/"bin/libpypy-c.dylib"
