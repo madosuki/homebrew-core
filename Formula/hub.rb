@@ -3,7 +3,6 @@ class Hub < Formula
   homepage "https://hub.github.com/"
   url "https://github.com/github/hub/archive/v2.4.0.tar.gz"
   sha256 "894eb112be9aa0464fa2c63f48ae8e573ef9e32a00bad700e27fd09a0cb3be4b"
-
   head "https://github.com/github/hub.git"
 
   bottle do
@@ -18,8 +17,8 @@ class Hub < Formula
 
   depends_on "go" => :build
 
-  # The build needs Ruby 1.9 or higher.
-  depends_on "ruby" => :build if MacOS.version <= :mountain_lion
+  # System Ruby uses old TLS versions no longer supported by RubyGems.
+  depends_on "ruby" => :build if MacOS.version <= :sierra
 
   def install
     if build.with? "docs"
