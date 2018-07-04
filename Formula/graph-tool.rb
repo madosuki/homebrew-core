@@ -5,11 +5,13 @@ class GraphTool < Formula
   homepage "https://graph-tool.skewed.de/"
   url "https://downloads.skewed.de/graph-tool/graph-tool-2.27.tar.bz2"
   sha256 "4740c69720dfbebf8fb3e77057b3e6a257ccf0432cdaf7345f873247390e4313"
+  revision 1
 
   bottle do
-    sha256 "8f1261b33f8270e9a2be5a930de38bcef4bcdbd749b7051d494c05024cfe1971" => :high_sierra
-    sha256 "271aaced63f2801e7508913dfce5a937de2f99c9e0635e20afd5101192553ed4" => :sierra
-    sha256 "53bcbcfac18b123cf923a1711eac3d1160515b0fd8652a7fa14234ea461b0d2e" => :el_capitan
+    rebuild 1
+    sha256 "cf89561d96c920f6ec6f0185557d2f0b95ec530c956519f3a8a53f7c96d08c6e" => :high_sierra
+    sha256 "7423ab8435383694efd8b12e3260b9b39d60e1d28ac8dd475ae361ec618ccef3" => :sierra
+    sha256 "2581ddd563891c629a26ea658b4168d4687f736a6b0bc46638b51af3e8a036f1" => :el_capitan
   end
 
   depends_on "pkg-config" => :build
@@ -26,6 +28,13 @@ class GraphTool < Formula
   depends_on "pygobject3"
   depends_on "python"
   depends_on "scipy"
+
+  # Remove for > 2.27
+  # Upstream commit from 3 Jul 2018 "Fix incompatibility with Python 3.7"
+  patch do
+    url "https://git.skewed.de/count0/graph-tool/commit/0407f41a.patch"
+    sha256 "6ff5d8729bc2dcad9fafe9f2417a60c10ad09d91ea76a3a48031c9171c57ba44"
+  end
 
   resource "Cycler" do
     url "https://files.pythonhosted.org/packages/c2/4b/137dea450d6e1e3d474e1d873cd1d4f7d3beed7e0dc973b06e8e10d32488/cycler-0.10.0.tar.gz"
@@ -77,8 +86,7 @@ class GraphTool < Formula
                           "PYTHON=python3",
                           "PYTHON_LIBS=-undefined dynamic_lookup",
                           "--with-python-module-path=#{lib}/python#{xy}/site-packages",
-                          "--with-boost-python=libboost-python36",
-                          "--with-boost-python=36"
+                          "--with-boost-python=boost_python#{xy.to_s.delete(".")}-mt"
     system "make", "install"
 
     site_packages = "lib/python#{xy}/site-packages"

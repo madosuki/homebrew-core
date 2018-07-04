@@ -4,12 +4,13 @@ class Root < Formula
   url "https://root.cern.ch/download/root_v6.14.00.source.tar.gz"
   version "6.14.00"
   sha256 "7946430373489310c2791ff7a3520e393dc059db1371272bcd9d9cf0df347a0b"
+  revision 1
   head "http://root.cern.ch/git/root.git"
 
   bottle do
-    sha256 "f61a6854f0b2fdefd692390d10721cd35aad69c696628e0a378468986de9a4c3" => :high_sierra
-    sha256 "ca54c9feda676eb4a51fa636e89e488341a25a53bcf446680e86baadf524fe57" => :sierra
-    sha256 "a4214d56d0f8854106eb887ff44093444e39d1ce1b9d9466f226bf62ff27088b" => :el_capitan
+    sha256 "d21e759311b538c11f5ddf870ca676e23f8255628dd571f9af8c88c911a80b38" => :high_sierra
+    sha256 "211c63b9860f5801d88e8f5a6c8a01eadcf4f31133e55a7d0099abe0a8881977" => :sierra
+    sha256 "b35598bcca5c050ec6e410f56602433b010747add394cbf3c5019757c90bb78f" => :el_capitan
   end
 
   depends_on "cmake" => :build
@@ -30,6 +31,9 @@ class Root < Formula
   needs :cxx11
 
   skip_clean "bin"
+
+  # Python 3.7 compat
+  patch :DATA
 
   def install
     # Work around "error: no member named 'signbit' in the global namespace"
@@ -145,3 +149,44 @@ class Root < Formula
     end
   end
 end
+
+__END__
+diff --git a/bindings/pyroot/src/PyRootType.cxx b/bindings/pyroot/src/PyRootType.cxx
+index 3c2719c..0edc2e8 100644
+--- a/bindings/pyroot/src/PyRootType.cxx
++++ b/bindings/pyroot/src/PyRootType.cxx
+@@ -100,7 +100,7 @@ namespace {
+             if ( ! attr && ! PyRootType_CheckExact( pyclass ) && PyType_Check( pyclass ) ) {
+                PyErr_Clear();
+                PyObject* pycppname = PyObject_GetAttr( pyclass, PyStrings::gCppName );
+-               char* cppname = PyROOT_PyUnicode_AsString(pycppname);
++               const char* cppname = PyROOT_PyUnicode_AsString(pycppname);
+                Py_DECREF(pycppname);
+                Cppyy::TCppScope_t scope = Cppyy::GetScope( cppname );
+                TClass* klass = TClass::GetClass( cppname );
+diff --git a/bindings/pyroot/src/Pythonize.cxx b/bindings/pyroot/src/Pythonize.cxx
+index 8eb4e46..3b5c1ae 100644
+--- a/bindings/pyroot/src/Pythonize.cxx
++++ b/bindings/pyroot/src/Pythonize.cxx
+@@ -976,7 +976,7 @@ namespace {
+       vi->vi_len = PySequence_Size( v );
+ 
+ #ifndef R__WIN32 // prevent error LNK2001: unresolved external symbol __PyGC_generation0
+-      _PyObject_GC_TRACK( vi );
++      PyObject_GC_Track( vi );
+ #endif
+       return (PyObject*)vi;
+    }
+diff --git a/bindings/pyroot/src/TPyROOTApplication.cxx b/bindings/pyroot/src/TPyROOTApplication.cxx
+index 4f624a7..34bf9e6 100644
+--- a/bindings/pyroot/src/TPyROOTApplication.cxx
++++ b/bindings/pyroot/src/TPyROOTApplication.cxx
+@@ -98,7 +98,7 @@ Bool_t PyROOT::TPyROOTApplication::CreatePyROOTApplication( Bool_t bLoadLibs )
+       if ( argl && 0 < PyList_Size( argl ) ) argc = (int)PyList_GET_SIZE( argl );
+       char** argv = new char*[ argc ];
+       for ( int i = 1; i < argc; ++i ) {
+-         char* argi = PyROOT_PyUnicode_AsString( PyList_GET_ITEM( argl, i ) );
++         char* argi = const_cast<char *>(PyROOT_PyUnicode_AsString( PyList_GET_ITEM( argl, i ) ));
+          if ( strcmp( argi, "-" ) == 0 || strcmp( argi, "--" ) == 0 ) {
+          // stop collecting options, the remaining are for the python script
+             argc = i;    // includes program name

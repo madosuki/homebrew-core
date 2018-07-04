@@ -1,15 +1,15 @@
 class Gcovr < Formula
   desc "Reports from gcov test coverage program"
   homepage "https://gcovr.com/"
-  url "https://github.com/gcovr/gcovr/archive/4.0.tar.gz"
-  sha256 "f9731a0ea516f2087e13b3bc310dbd8edaec4ce6a56b2462f5603ee925f40377"
+  url "https://github.com/gcovr/gcovr/archive/4.1.tar.gz"
+  sha256 "1ad8042fd4dc4c355fd7e605d395eefa2a59b1677dfdc308e0ef00083e8b37ee"
   head "https://github.com/gcovr/gcovr.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "59df642ddfc6f02b6b7d016b5981d052993810172ffd6c40b762b4b29f2cc945" => :high_sierra
-    sha256 "d7af2533c0368f4b09171804c04e482dcb275bc733192dbb7ae614a65190ffc0" => :sierra
-    sha256 "7a763937433619fc56d1a44f20ff21ac509a04da217b211743d0299e49f6d510" => :el_capitan
+    sha256 "b5b3a5c643c84b547e6c2ae0c9db6cba7d53a8a081e080eb1efefcfd1f95b211" => :high_sierra
+    sha256 "7cf8abff45bbea6e268fe4674c5f8ff2be1d4df413abf3068def0f07c2bc0c09" => :sierra
+    sha256 "8044508fa650772d5d00cd83a8eacebf0cd910b2ced77e693809dbb8a0fdcb34" => :el_capitan
   end
 
   depends_on "python"

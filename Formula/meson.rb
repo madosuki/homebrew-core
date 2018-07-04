@@ -1,15 +1,15 @@
 class Meson < Formula
   desc "Fast and user friendly build system"
   homepage "https://mesonbuild.com/"
-  url "https://github.com/mesonbuild/meson/releases/download/0.46.1/meson-0.46.1.tar.gz"
-  sha256 "19497a03e7e5b303d8d11f98789a79aba59b5ad4a81bd00f4d099be0212cee78"
+  url "https://github.com/mesonbuild/meson/releases/download/0.47.0/meson-0.47.0.tar.gz"
+  sha256 "1bd360a58c28039cdb3b8ce909764e90a58481deb79396227ba4081af377f009"
   head "https://github.com/mesonbuild/meson.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "9a8d3a68607199d272e3b68bb2c3ede00fc4cf034a6efe5c1ace412048ae0032" => :high_sierra
-    sha256 "9a8d3a68607199d272e3b68bb2c3ede00fc4cf034a6efe5c1ace412048ae0032" => :sierra
-    sha256 "9a8d3a68607199d272e3b68bb2c3ede00fc4cf034a6efe5c1ace412048ae0032" => :el_capitan
+    sha256 "234c6d09df8f86e296824bf192d7b3d69e447923827ab0895e8fd49dded92738" => :high_sierra
+    sha256 "234c6d09df8f86e296824bf192d7b3d69e447923827ab0895e8fd49dded92738" => :sierra
+    sha256 "234c6d09df8f86e296824bf192d7b3d69e447923827ab0895e8fd49dded92738" => :el_capitan
   end
 
   depends_on "python"

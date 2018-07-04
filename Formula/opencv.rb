@@ -3,13 +3,12 @@ class Opencv < Formula
   homepage "https://opencv.org/"
   url "https://github.com/opencv/opencv/archive/3.4.1.tar.gz"
   sha256 "f1b87684d75496a1054405ae3ee0b6573acaf3dad39eaf4f1d66fdd7e03dc852"
-  revision 5
+  revision 6
 
   bottle do
-    rebuild 2
-    sha256 "f9abd6049e1c5b52ac9dad6b7605bb09fb3936a6da5b8f613546bf6d4d199a1c" => :high_sierra
-    sha256 "2fd9d42ab0c9b3ee736ca60516dfc8224100e8fe2601c88ce7bc860763b7994d" => :sierra
-    sha256 "7fbbf8dde773d2efe29ba7fcbed805db8a1b3201b6b713c917459bb4d59c82cc" => :el_capitan
+    sha256 "0db1ccdfadbedd53d2dbf59d05321ce7fab22130784df3a76db10dc3851481e4" => :high_sierra
+    sha256 "91541d1656691eb1944c4ab8cf37d055b66c78aae49306928a87aca3bc0d8367" => :sierra
+    sha256 "9d5b496cf6c95ddf2ea16de69e0898cccd5b4753014a36394bcc90787691ed78" => :el_capitan
   end
 
   depends_on "cmake" => :build
@@ -26,6 +25,13 @@ class Opencv < Formula
   depends_on "tbb"
 
   needs :cxx11
+
+  # Remove for > 3.4.1
+  # Upstream commit from 2 Jul 2018 "Python 3.7 compatability"
+  patch do
+    url "https://github.com/opencv/opencv/commit/0c4328fbf3d.patch?full_index=1"
+    sha256 "67c45080fbba9756b92f9dbceec6749f476f72a5485dcd9e163beaaa755a4b54"
+  end
 
   resource "contrib" do
     url "https://github.com/opencv/opencv_contrib/archive/3.4.1.tar.gz"

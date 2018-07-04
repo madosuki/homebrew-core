@@ -5,12 +5,13 @@ class Ocrmypdf < Formula
   homepage "https://github.com/jbarlow83/OCRmyPDF"
   url "https://files.pythonhosted.org/packages/bd/62/81cb1e337863081825c1f89b6d1648151d71b26b4ef82afdb7017409499a/ocrmypdf-6.2.1.tar.gz"
   sha256 "9b615492f7fc6bec0e49483d89378d8647de1b61c701e060c9bd11a686c9b256"
+  revision 1
 
   bottle do
     cellar :any
-    sha256 "df4d5273d79d5945a8567c8d03a6ddff5b5ff34aae423bb5987e4d7eb1434d73" => :high_sierra
-    sha256 "73ddecd47f97ef1bf16eca5ae939df70c461355fddaec97b8a6745c28c826cba" => :sierra
-    sha256 "1852f86c72fb0a0a3d2691156d0cb534ab9c0050a3eac19f92c37e4945a6e8e3" => :el_capitan
+    sha256 "2a6700bf8a0693310ebb56fcd151b6e2c9037554149dd069ecfdd1f79b3a639a" => :high_sierra
+    sha256 "e8aa0dad49cb9061af519091aeac025ff8d234a87fc54b9ba39a479af5fa3ffd" => :sierra
+    sha256 "ed3976367dbde22692e846e9b2c9426415513f3219573f43f32ee1f2d73fb90c" => :el_capitan
   end
 
   depends_on "mupdf-tools" => :build # PyMuPDF statically links to libmupdf.a
@@ -67,6 +68,13 @@ class Ocrmypdf < Formula
   resource "ruffus" do
     url "https://files.pythonhosted.org/packages/97/fe/12445c6793350ab5dbf76cb87a122b9e9aab9a9040a2801004806d985216/ruffus-2.6.3.tar.gz"
     sha256 "d78728d802013d91d15e5e939554dabce196967734850fa44634dce47e3e5061"
+
+    # Upstream PR from 29 Jun 2018 "Remove functions deprecated in Python 3.7"
+    # Reported 3 Jul 2018 https://github.com/jbarlow83/OCRmyPDF/issues/274
+    patch do
+      url "https://github.com/cgat-developers/ruffus/pull/92.patch?full_index=1"
+      sha256 "784cf147343d69f9e8fafc48eebf4a9d07efaaff4ea37b4fe870e1efc53c9b11"
+    end
   end
 
   def install

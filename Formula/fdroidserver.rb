@@ -5,12 +5,14 @@ class Fdroidserver < Formula
   homepage "https://f-droid.org"
   url "https://files.pythonhosted.org/packages/5d/f6/a3103b11c4608a056bc693bb601c6997f2d482aca5464bb17ac37bd08d4b/fdroidserver-1.0.8.tar.gz"
   sha256 "5b3ea8f1ac6255952ecb46c8f70fb90bc085659af9800a96a7041679cac7e2a7"
+  revision 1
 
   bottle do
     cellar :any
-    sha256 "2837d46835121685cbdbaf8c3d7d326ca3dad9b16cbf2be9d8386e76b922b9d3" => :high_sierra
-    sha256 "e78b1171b1b113ddeb98b0777e997b265dc30b9b3429fa7fe6c3a8eb400a8f8b" => :sierra
-    sha256 "f8dbe848267cec29b4fe12da3cd6269783d9436283537baa114f380b56d8bda4" => :el_capitan
+    rebuild 1
+    sha256 "6a033da23c65a36571e371be2797ee2993335e8c3be26e44cfd706b48618c97e" => :high_sierra
+    sha256 "b25eccdf9213678d148ca8c9023baaffffff4f1d807c2effa0401bba7e16094c" => :sierra
+    sha256 "7280944f84cad4c8d7e60fe7ff4c1d481bcc2b6fe0feb5721052984695d396f2" => :el_capitan
   end
 
   depends_on "pkg-config" => :build
@@ -138,8 +140,8 @@ class Fdroidserver < Formula
   end
 
   resource "jedi" do
-    url "https://files.pythonhosted.org/packages/ff/c9/781449489b743c67ad063e33aa68139afaa8a1a5bc348eee9f5cab39b4e1/jedi-0.12.0.tar.gz"
-    sha256 "1972f694c6bc66a2fac8718299e2ab73011d653a6d8059790c3476d2353b99ad"
+    url "https://files.pythonhosted.org/packages/49/2f/cdfb8adc8cfc9fc2e5673e724d9b9098619dc1a2772cc6b8af34c6b7bef9/jedi-0.12.1.tar.gz"
+    sha256 "b409ed0f6913a701ed474a614a3bb46e6953639033e31f769ca7581da5bd1ec1"
   end
 
   resource "kiwisolver" do
@@ -183,8 +185,8 @@ class Fdroidserver < Formula
   end
 
   resource "parso" do
-    url "https://files.pythonhosted.org/packages/4b/86/bc857ddcc892968b954620f18ce90a943368ee9fe84595911501da898798/parso-0.2.1.tar.gz"
-    sha256 "f0604a40b96e062b0fd99cf134cc2d5cdf66939d0902f8267d938b0d5b26707f"
+    url "https://files.pythonhosted.org/packages/29/c1/fd8a3e5eec85bf160c2b1ea369fdfa585620cf753db021d5db895801e701/parso-0.3.0.tar.gz"
+    sha256 "d250235e52e8f9fc5a80cc2a5f804c9fefd886b2e67a2b1099cf085f403f8e33"
   end
 
   resource "pexpect" do
@@ -258,8 +260,8 @@ class Fdroidserver < Formula
   end
 
   resource "PyYAML" do
-    url "https://files.pythonhosted.org/packages/4a/85/db5a2df477072b2902b0eb892feb37d88ac635d36245a72a6a69b23b383a/PyYAML-3.12.tar.gz"
-    sha256 "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    url "https://files.pythonhosted.org/packages/bd/da/0a49c1a31c60634b93fd1376b3b7966c4f81f2da8263f389cad5b6bbd6e8/PyYAML-4.2b1.tar.gz"
+    sha256 "ef3a0d5a5e950747f4a39ed7b204e036b37f9bddc7551c1a813b8727515a832e"
   end
 
   resource "qrcode" do
@@ -341,7 +343,9 @@ class Fdroidserver < Formula
     venv.pip_install resource("lxml")
     ENV.delete "SDKROOT" # avoid matplotlib build failure on 10.12
 
-    res = resources.map(&:name).to_set - ["lxml", "Pillow"]
+    venv.pip_install resource("cffi") # or bcrypt fails to build
+
+    res = resources.map(&:name).to_set - ["cffi", "lxml", "Pillow"]
 
     res.each do |r|
       venv.pip_install resource(r)
