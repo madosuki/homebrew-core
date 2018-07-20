@@ -1,14 +1,14 @@
 class XmlToolingC < Formula
   desc "Provides a higher level interface to XML processing"
   homepage "https://wiki.shibboleth.net/confluence/display/OpenSAML/XMLTooling-C"
-  url "https://shibboleth.net/downloads/c++-opensaml/2.6.1/xmltooling-1.6.4.tar.gz"
-  sha256 "84c2a458f206465b35a77e6edda202e51246147bd994219e01dfada202ad679a"
+  url "https://shibboleth.net/downloads/c++-opensaml/3.0.0/xmltooling-3.0.1.tar.bz2"
+  sha256 "f94dff26aede7e8be37b78323ad0accae73d190cc94d5d3f5e5494ebb5aa45da"
 
   bottle do
     cellar :any
-    sha256 "1c3be0d73b48e5e47284623bae7f3a8840e2bc0684d0146f550c637f0aca1b6b" => :high_sierra
-    sha256 "7bd073591df0e604d227de6a69883ddfa72b2dee9fa2b44c1ab57fd5b4c24276" => :sierra
-    sha256 "d5d87c12f03e64d62421aff27732605801ba70a50c62b2815f468ce737306d9d" => :el_capitan
+    sha256 "88b3c749096fd59258317ef31a381a553a1df453fb7d7de09ecb18c8d9ac5994" => :high_sierra
+    sha256 "dd5f6f55d9d8f9067470f0a93f9ba379ef6e5ae8b2d7e5892b8b79003321b23e" => :sierra
+    sha256 "4627af97a11e0c427f20cfacd463b79fc19db15062bee990f8c7b2392d605593" => :el_capitan
   end
 
   depends_on "pkg-config" => :build
