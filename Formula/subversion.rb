@@ -6,6 +6,7 @@ class Subversion < Formula
   sha256 "5b35e3a858d948de9e8892bf494893c9f7886782f6abbe166c0487c19cf6ed88"
 
   bottle do
+    sha256 "2115c4455e243a34fe537da1f901779d1fd2668937e2da48ccb5f7bad484249f" => :mojave
     sha256 "b40f591a44176f1e7f7f1c0aaebe8772657687b13e672286f3ab45b69f22db0b" => :high_sierra
     sha256 "274b5e82027f90b8d707c859cf143808672b55e243b4070c4d18f0f6e914d6f3" => :sierra
     sha256 "c5fee4ce6dae3f2c7398dd01a5c6df56f0227ec2323b4be107a2d26196339b6c" => :el_capitan
@@ -14,11 +15,12 @@ class Subversion < Formula
   deprecated_option "java" => "with-java"
   deprecated_option "perl" => "with-perl"
   deprecated_option "ruby" => "with-ruby"
+  deprecated_option "with-gpg-agent" => "with-gnupg"
 
   option "with-java", "Build Java bindings"
   option "without-ruby", "Build without Ruby bindings"
   option "without-perl", "Build without Perl bindings"
-  option "with-gpg-agent", "Build with support for GPG Agent"
+  option "with-gnupg", "Build with support for GPG Agent"
 
   depends_on "pkg-config" => :build
   depends_on "swig" => :build
@@ -36,7 +38,7 @@ class Subversion < Formula
   depends_on "openssl"
 
   # Other optional dependencies
-  depends_on "gpg-agent" => :optional
+  depends_on "gnupg" => :optional
   depends_on "gettext" => :optional
   depends_on :java => ["1.8", :optional]
 
@@ -104,7 +106,7 @@ class Subversion < Formula
     ]
 
     args << "--enable-javahl" << "--without-jikes" if build.with? "java"
-    args << "--without-gpg-agent" if build.without? "gpg-agent"
+    args << "--without-gpg-agent" if build.without? "gnupg"
     args << "--disable-nls" if build.without? "gettext"
 
     if build.with? "ruby"
