@@ -5,10 +5,10 @@ class Python < Formula
   sha256 "0382996d1ee6aafe59763426cf0139ffebe36984474d0ec4126dd1c40a8b3549"
 
   bottle do
-    rebuild 2
-    sha256 "e433d47197b846293fb281cadbbbc40f57bfbd09426d9e581c87a8cbf1dc1464" => :high_sierra
-    sha256 "e90c9a6e56e783966f820bd07c56822a56b87a90bd5c7c3a1b936abfcf774e3e" => :sierra
-    sha256 "acc30a248983b8eb264d5f7b659a8f0fac46b707f4d5ef819b6122bef62a8a49" => :el_capitan
+    rebuild 3
+    sha256 "6524b4cac1faeade2aee55ece641e4cf337cec1007218d8f72e9c705ecf37a4f" => :high_sierra
+    sha256 "7e239b400ecc59d83c54fe7876d7db8069a590a1ff728ec27fa1a8019728d688" => :sierra
+    sha256 "ca2fd2fa89e5c8408b69060716782286dc764c290754866f38bced1fede3eaf6" => :el_capitan
   end
 
   head do
@@ -36,8 +36,8 @@ class Python < Formula
   skip_clean "bin/easy_install3", "bin/easy_install-3.4", "bin/easy_install-3.5", "bin/easy_install-3.6", "bin/easy_install-3.7"
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/5a/df/b2e3d9693bb0dcbeac516a73dd7a9eb82b126ae52e4a74605a9b01beddd5/setuptools-40.1.0.zip"
-    sha256 "664500268e4d649ce5b9f9dc0af0edc2b144666b1544d64af0453da94aa72b70"
+    url "https://files.pythonhosted.org/packages/ef/1d/201c13e353956a1c840f5d0fbf0461bd45bbd678ea4843ebf25924e8984c/setuptools-40.2.0.zip"
+    sha256 "47881d54ede4da9c15273bac65f9340f8929d4f0213193fa7894be384f2dcfa6"
   end
 
   resource "pip" do
