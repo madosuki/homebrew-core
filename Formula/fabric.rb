@@ -2,13 +2,14 @@ class Fabric < Formula
   include Language::Python::Virtualenv
 
   desc "Library and command-line tool for SSH"
-  homepage "http://www.fabfile.org"
+  homepage "https://www.fabfile.org/"
   url "https://github.com/fabric/fabric/archive/2.3.1.tar.gz"
   sha256 "99c8c893cb8219be8a580f92a57efce0a55972ca70519ffd6eb594b04e0ffe0d"
   head "https://github.com/fabric/fabric.git"
 
   bottle do
     cellar :any
+    sha256 "33fd14a665dcdeae27786cb6bf880e14fd0da7d01ba2cbc1d0ff73e727d6f1c2" => :mojave
     sha256 "c9d2cd238d0523c58949578a23789c6b23dd457fe73aceb7d89c854d871cfeb4" => :high_sierra
     sha256 "6538e4dae114480e16d6a3e1f01e204f52eff1145db7b6956dae30ea471f549c" => :sierra
     sha256 "0303732d7abca2d6754f846faa28b7f145413811b9b2276cf1eb3f38c7b9e90f" => :el_capitan

@@ -2,14 +2,15 @@ class ThorsSerializer < Formula
   desc "Declarative serialization library (JSON/YAML) for C++"
   homepage "https://github.com/Loki-Astari/ThorsSerializer"
   url "https://github.com/Loki-Astari/ThorsSerializer.git",
-      :tag => "1.7.5",
-      :revision => "338a933fe3071ed509b99cf6c44a99c8068797b1"
+      :tag => "1.8.2",
+      :revision => "595c7690f9e8a08fa5bfce1c7d703a3724136878"
 
   bottle do
     cellar :any
-    sha256 "2548c7d97caf794154f434f3852236fbafc4331ed65e1cd40340db7579a9b025" => :high_sierra
-    sha256 "95772d76896402a22b20987e7a10dfd85ba441c0f704bd86dee389d1a5b387fd" => :sierra
-    sha256 "057eb717b5f941bbb3f760510356bbba2df8a9996dd40567c7abe8acea62ef14" => :el_capitan
+    sha256 "7af87db03a1f46f39bfb7b555c890d20560eee954f68674560d6b9e27010128c" => :mojave
+    sha256 "182f8d09a661835876b0a9dcdda459fde61bf5825c20b7ab2b2c5f68d83b3474" => :high_sierra
+    sha256 "0e6f157a21e63d4b6df9cd4d836d774e49ed48cec94f56f52f7e441ce6640e04" => :sierra
+    sha256 "dac6b3ac6f6e5a0f9bcd71695944700baf2a726a94aca3695ffb538732483391" => :el_capitan
   end
 
   depends_on "libyaml"
