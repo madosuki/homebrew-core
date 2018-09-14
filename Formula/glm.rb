@@ -3,19 +3,20 @@ class Glm < Formula
   homepage "https://glm.g-truc.net/"
   url "https://github.com/g-truc/glm/releases/download/0.9.9.1/glm-0.9.9.1.zip"
   sha256 "10f1471d69ec09992f400705bedc9f5121e17a2c8fd6f9591244bb5ee1104a10"
+  revision 1
   head "https://github.com/g-truc/glm.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "ed0abd7ac4c09b0e34d00c7c72800645dea2adb361bb529885ea9ad9775af671" => :mojave
-    sha256 "3edc376c8c288f2693f871d87bfb574cffcf92815defeac8eeb593dd01f1f3c3" => :high_sierra
-    sha256 "3edc376c8c288f2693f871d87bfb574cffcf92815defeac8eeb593dd01f1f3c3" => :sierra
-    sha256 "3edc376c8c288f2693f871d87bfb574cffcf92815defeac8eeb593dd01f1f3c3" => :el_capitan
+    rebuild 1
+    sha256 "bfff1210011db0784e9ca382b22c73c303095ec427e42c3ae7948681d8ddc00e" => :mojave
+    sha256 "a08b7177f060604dfeca9ba56be35d28ed7fd85652589f0da7a37b9caaa845b0" => :high_sierra
+    sha256 "e6800f01c463ec8250acb7bdfe24c8db8d30324df0d2934ccf91c0b0f3d947e6" => :sierra
+    sha256 "7214934e63d1c5b6f0e791e48edfe710e6472a157fccc5f038618bd373ea0801" => :el_capitan
   end
 
-  option "with-doxygen", "Build documentation"
-  depends_on "doxygen" => [:build, :optional]
   depends_on "cmake" => :build
+  depends_on "doxygen" => :build
 
   def install
     mkdir "build" do
@@ -23,11 +24,9 @@ class Glm < Formula
       system "make", "install"
     end
 
-    if build.with? "doxygen"
-      cd "doc" do
-        system "doxygen", "man.doxy"
-        man.install "html"
-      end
+    cd "doc" do
+      system "doxygen", "man.doxy"
+      man.install "html"
     end
     doc.install Dir["doc/*"]
   end
